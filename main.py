@@ -1,4 +1,5 @@
 import re
+import sys
 
 if __name__ == "__main__":
 
@@ -11,11 +12,12 @@ if __name__ == "__main__":
     input_urls = []
     
     
-    url_list = [post_url for post_url in input("Enter Comma Seperated Post Urls (https://...)::\n").split(', ')] 
+    url_list = [post_url for post_url in input("Enter Comma Seperated Post Urls (https://...)::\n").split(',')] 
     
     for post_url in url_list:
-        base_url = re.search('https?://([A-Za-z_0-9.-]+).*', post_url)
-        post_path = post_url.replace("https://"+base_url.group(1),"")
+        _post_url_= post_url.strip(" ")
+        base_url = re.search('https?://([A-Za-z_0-9.-]+).*', _post_url_)
+        post_path = _post_url_.replace("https://"+base_url.group(1),"")
         
         input_urls.append({"base_url": base_url.group(1), "post_path" : post_path})
     
